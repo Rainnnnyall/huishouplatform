@@ -75,72 +75,69 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: '安全中心', icon: 'el-icon-key' }
-      }
-    ]
-  },
+  // {
+  //   path: '/form',
+  //   component: Layout,
+  //   name:"Center",
+  //   meta: {
+  //     title: '安全中心',
+  //     icon: 'example'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'Center',
+  //       component: () => import('@/views/form/index'),
+  //       meta: { title: '修改密码', icon: 'eye' }
+  //     },{
+  //       path: 'addPerson',
+  //       name: 'addPerson',
+  //       component: () => import('@/views/form/addPerson'),
+  //       meta: { title: '用户管理', icon: 'tree' },
+        
+  //     }
+  //   ]
+  // },
   {
     path: '/nested',
     component: Layout,
     redirect: '/nested/menu1',
     name: 'Nested',
     meta: {
-      title: 'Nested',
-      icon: 'nested'
+      title: '安全中心',
+      icon: 'example'
     },
     children: [
       {
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
-        meta: { title: 'Menu1' },
+        meta: { title: '用户管理',icon: 'tree' },
         children: [
           {
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
             name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
+            meta: { title: '管理员权限',icon: 'user' }
           },
           {
             path: 'menu1-2',
             component: () => import('@/views/nested/menu1/menu1-2'),
             name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
+            meta: { title: '回收员权限',icon: 'user' },
           },
           {
             path: 'menu1-3',
             component: () => import('@/views/nested/menu1/menu1-3'),
             name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
+            meta: { title: '普通用户权限',icon: 'user' }
           }
         ]
       },
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        meta: { title: '修改密码', icon: 'eye' }
       }
     ]
   },

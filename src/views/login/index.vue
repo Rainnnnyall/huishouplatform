@@ -66,7 +66,8 @@
         >登录</el-button
       >
 
-      <div class="tips" v-for="item in this.$store.state.login" :key="item.id">
+      <div class="tips" v-for="item in this.$store.state.login" :key="item.username">
+        <span> 职位: {{ item.id==0?p1:(item.id==1?p2:p3) }}</span>
         <span style="margin-right: 20px">用户名: {{ item.username }}</span>
         <span> 密码: {{ item.password }}</span>
       </div>
@@ -94,7 +95,7 @@ export default {
         callback();
       }
     };
-    var lab;
+    
     return {
       loginForm: {
         username: "admin",
@@ -112,6 +113,9 @@ export default {
       passwordType: "password",
       redirect: undefined,
       lab: false,
+      p1:'管理员',
+      p2:'回收员',
+      p3:'普通用户'
     };
   },
   watch: {
@@ -137,27 +141,33 @@ export default {
       var username = this.$refs.username.value;
       var password = this.$refs.password.value;
       var obj = this.$store.state.login;
-      console.log(obj, "9999999999");
+      console.log(username,password)
+      console.log(obj[2].username,obj[2].password,"9999999999");
       for (var i in obj) {
         var flag = false;
         if (username == obj[i].username && password == obj[i].password) {
+          console.log('走了')
           flag = true;
           break;
         }
       }
-      if (flag) {
+      if (flag==true) {
+        console.log('hahaha')
         this.loading = true;
         // 1.调用vuex提供的登录方法
         this.$store
           .dispatch("user/login", this.loginForm)
           .then(() => {
+
             this.$router.push({ path: this.redirect || "/" });
             this.loading = false;
+            console.log('2222')
           })
           .catch(() => {
             this.loading = false;
           });
       } else {
+        console.log('wawawaw')
         this.lab = true;
         setTimeout(() => {
           this.lab = false;
